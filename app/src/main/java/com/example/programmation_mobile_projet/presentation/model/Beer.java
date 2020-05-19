@@ -1,4 +1,4 @@
-package com.example.programmation_mobile_projet;
+package com.example.programmation_mobile_projet.presentation.model;
 
 public class Beer {
 

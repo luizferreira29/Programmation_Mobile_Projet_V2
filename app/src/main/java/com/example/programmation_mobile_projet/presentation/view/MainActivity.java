@@ -1,4 +1,4 @@
-package com.example.programmation_mobile_projet;
+package com.example.programmation_mobile_projet.presentation.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,15 +9,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.programmation_mobile_projet.R;
+import com.example.programmation_mobile_projet.data.BeerApi;
+import com.example.programmation_mobile_projet.presentation.model.Beer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.nio.CharBuffer;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ListAdapter ListAdapter;
+    private com.example.programmation_mobile_projet.presentation.view.ListAdapter ListAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private SharedPreferences Sharedpreferences;
     private Gson gson;

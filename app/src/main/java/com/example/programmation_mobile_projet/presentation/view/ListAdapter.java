@@ -1,4 +1,4 @@
-package com.example.programmation_mobile_projet;
+package com.example.programmation_mobile_projet.presentation.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.programmation_mobile_projet.R;
+import com.example.programmation_mobile_projet.presentation.model.Beer;
 
 import java.util.List;
 
