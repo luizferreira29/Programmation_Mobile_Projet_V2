@@ -1,14 +1,11 @@
 package com.example.programmation_mobile_projet.presentation.controller;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
-import com.example.programmation_mobile_projet.data.BeerApi;
+import com.example.programmation_mobile_projet.Singletons;
 import com.example.programmation_mobile_projet.presentation.model.Beer;
 import com.example.programmation_mobile_projet.presentation.view.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -17,8 +14,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController {
 
@@ -49,14 +44,7 @@ public class MainController {
 
     }
         public void makeApiCall(){
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build();
-
-            final BeerApi BeerApi = retrofit.create(BeerApi.class);
-
-            Call<List<Beer>> call = BeerApi.getBeerResponse();
+            Call<List<Beer>> call = Singletons.getBeerApi().getBeerResponse();
             call.enqueue(new Callback<List<Beer>>() {
                 @Override
                 public void onResponse(Call<List<Beer>> call, Response<List<Beer>> response) {
