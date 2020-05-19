@@ -63,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void navigateToDetails(Beer beer) {
         Intent myIntent = new Intent(MainActivity.this, DetailsActivity.class);
-        //myIntent.putExtra("key", value); //Optional parameters
+        myIntent.putExtra("beerKeyName", Singletons.getGson().toJson(beer)); //Optional parameters
+        myIntent.putExtra("beerKeyId", beer.getId()); //Optional parameters
+
         MainActivity.this.startActivity(myIntent);
 
         //Toast.makeText(getApplicationContext(), "TODO NAVIGATE", Toast.LENGTH_SHORT).show();
