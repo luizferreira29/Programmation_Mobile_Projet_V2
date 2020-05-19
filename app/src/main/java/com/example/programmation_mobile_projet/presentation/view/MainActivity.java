@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.programmation_mobile_projet.R;
+import com.example.programmation_mobile_projet.Singletons;
 import com.example.programmation_mobile_projet.data.BeerApi;
 import com.example.programmation_mobile_projet.presentation.controller.MainController;
 import com.example.programmation_mobile_projet.presentation.model.Beer;
@@ -41,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         controller = new MainController(
                 this,
-                new GsonBuilder()
-                        .setLenient()
-                        .create(),
-                getSharedPreferences("programmation_projet_mobile", Context.MODE_PRIVATE)
+                Singletons.getGson(),
+                Singletons.getSharedPreferencesInstance(getApplicationContext())
         );
         controller.onStart();
 

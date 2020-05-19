@@ -1,5 +1,8 @@
 package com.example.programmation_mobile_projet;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.example.programmation_mobile_projet.data.BeerApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,6 +19,7 @@ public class Singletons{
 
     private static Gson gsonInstance;
     private static BeerApi beerApiInstance;
+    private static SharedPreferences sharedPreferencesInstance;
 
     public static Gson getGson(){
         if(gsonInstance == null){
@@ -39,4 +43,14 @@ public class Singletons{
         }
         return beerApiInstance;
     }
+
+    public static SharedPreferences getSharedPreferencesInstance(Context context){
+        if(sharedPreferencesInstance == null){
+            sharedPreferencesInstance = context.getSharedPreferences("programmation_projet_mobile", Context.MODE_PRIVATE);
+        }
+
+        return  sharedPreferencesInstance;
+
+    }
+
 }
