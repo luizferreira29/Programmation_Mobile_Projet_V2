@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.programmation_mobile_projet.R;
 import com.example.programmation_mobile_projet.data.BeerApi;
+import com.example.programmation_mobile_projet.presentation.controller.MainController;
 import com.example.programmation_mobile_projet.presentation.model.Beer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -30,40 +31,26 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private com.example.programmation_mobile_projet.presentation.view.ListAdapter ListAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private SharedPreferences Sharedpreferences;
-    private Gson gson;
+
+    private MainController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Sharedpreferences = getSharedPreferences("application_projet_app_mobile", Context.MODE_PRIVATE);
-         gson = new GsonBuilder()
-                .setLenient()
-                .create();
+        controller = new MainController(
+                this,
+                new GsonBuilder()
+                        .setLenient()
+                        .create(),
+                getSharedPreferences("programmation_projet_mobile", Context.MODE_PRIVATE)
+        );
+        controller.onStart();
 
-        List<Beer> BeerList = getDataFromCache();
-
-        if(BeerList != null){
-            showList(BeerList);
-        } else{
-            makeApiCall();
-    }
     }
 
-    private List<Beer> getDataFromCache() {
-        String jsonBeer = Sharedpreferences.getString("jsonBeerList", null);
-
-        if(jsonBeer == null){
-            return null;
-        } else {
-            Type listType = new TypeToken<List<Beer>>() {}.getType();
-            return gson.fromJson(jsonBeer, listType);
-        }
-    }
-
-    private void showList(List<Beer> BeerList) {
+    public void showList(List<Beer> BeerList) {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -74,45 +61,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(ListAdapter);
     }
 
+
+
     private static final String BASE_URL = "https://api.punkapi.com/";
 
-    private void makeApiCall(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        final BeerApi BeerApi = retrofit.create(BeerApi.class);
-
-        Call<List<Beer>> call = BeerApi.getBeerResponse();
-        call.enqueue(new Callback<List<Beer>>() {
-            @Override
-            public void onResponse(Call<List<Beer>> call, Response<List<Beer>> response) {
-                if(response.isSuccessful() && response.body() !=null) {
-                    List<Beer> BeerList = response.body();
-                    saveList(BeerList);
-                    showList(BeerList);
-                } else
-                    showError();
-            }
-
-            @Override
-            public void onFailure(Call<List<Beer>> call, Throwable t) {
-                showError();
-            }
-        });
-    }
-
-    private void saveList(List<Beer> BeerList) {
-        String jsonString = gson.toJson(BeerList);
-        Sharedpreferences
-                .edit()
-                .putString("JsonBeerList", jsonString)
-                .apply();
-        Toast.makeText(getApplicationContext(), "List Saved", Toast.LENGTH_SHORT).show();
-    }
-
-    private void showError() {
+    public void showError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
     }
 }
