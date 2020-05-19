@@ -14,6 +14,11 @@ import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Beer> values;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Beer item);
+    }
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -43,9 +48,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List<Beer> myDataset) {
-        values = myDataset;
+    public ListAdapter(List<Beer> myDataset, OnItemClickListener listener) {
+        this.values = myDataset;
+        this.listener = listener;
     }
+
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -69,6 +76,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         final Beer currentBeer = values.get(position);
         holder.txtHeader.setText(currentBeer.getName());
         holder.txtFooter.setText(currentBeer.getTagline());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                listener.onItemClick(currentBeer);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

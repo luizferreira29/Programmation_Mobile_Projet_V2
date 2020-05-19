@@ -85,6 +85,6 @@ public class MainController {
     }
 
     public void onItemClick(Beer beer){
-
+        view.navigateToDetails(beer);
     }
 }
