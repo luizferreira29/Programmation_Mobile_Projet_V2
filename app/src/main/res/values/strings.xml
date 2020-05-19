@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Programmation_Mobile_Projet</string>
+    <string name="detail_text_description">Ecran Detail</string>
 </resources>
