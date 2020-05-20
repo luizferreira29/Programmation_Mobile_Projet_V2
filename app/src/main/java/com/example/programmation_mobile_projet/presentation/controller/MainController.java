@@ -43,33 +43,33 @@ public class MainController {
 
 
     }
-        public void makeApiCall(){
-            Call<List<Beer>> call = Singletons.getBeerApi().getBeerResponse();
-            call.enqueue(new Callback<List<Beer>>() {
-                @Override
-                public void onResponse(Call<List<Beer>> call, Response<List<Beer>> response) {
-                    if(response.isSuccessful() && response.body() !=null) {
-                        List<Beer> BeerList = response.body();
-                        saveList(BeerList);
-                        view.showList(BeerList);
-                    } else
-                        view.showError();
-                }
-
-                @Override
-                public void onFailure(Call<List<Beer>> call, Throwable t) {
+    public void makeApiCall(){
+        Call<List<Beer>> call = Singletons.getBeerApi().getBeerResponse();
+        call.enqueue(new Callback<List<Beer>>() {
+            @Override
+            public void onResponse(Call<List<Beer>> call, Response<List<Beer>> response) {
+                if(response.isSuccessful() && response.body() !=null) {
+                    List<Beer> BeerList = response.body();
+                    saveList(BeerList);
+                    view.showList(BeerList);
+                } else
                     view.showError();
-                }
-            });
-        }
+            }
 
-        public void saveList(List<Beer> BeerList) {
-            String jsonString = gson.toJson(BeerList);
-            sharedPreferences
-                    .edit()
-                    .putString("JsonBeerList", jsonString)
-                    .apply();
-        }
+            @Override
+            public void onFailure(Call<List<Beer>> call, Throwable t) {
+                view.showError();
+            }
+        });
+    }
+
+    public void saveList(List<Beer> BeerList) {
+        String jsonString = gson.toJson(BeerList);
+        sharedPreferences
+                .edit()
+                .putString("JsonBeerList", jsonString)
+                .apply();
+    }
 
 
 

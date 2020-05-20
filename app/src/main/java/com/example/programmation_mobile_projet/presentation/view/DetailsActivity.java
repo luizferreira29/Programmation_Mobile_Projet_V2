@@ -31,11 +31,36 @@ public class DetailsActivity extends AppCompatActivity {
         String beerJson = intent.getStringExtra("beerKeyName"); //if it's a string you stored.
         Beer beer = Singletons.getGson().fromJson(beerJson, Beer.class);
         showDetail(beer);
+
+        //txtDetail = findViewById(R.id.detail_txt2);
+        //showDetail2(beer);
+
+        txtDetail = findViewById(R.id.detail_txt3);
+        showDetail3(beer);
+
+        txtDetail = findViewById(R.id.detail_txt4);
+        showDetail4(beer);
     }
 
     private void showDetail(Beer beer) {
         txtDetail.setText(beer.getName());
     }
 
+    /*private void showDetail2(Beer beer) {
+        txtDetail.setText(beer.getId());
+    }*/
+
+    private void showDetail3(Beer beer) {
+        txtDetail.setText("tagline :" +beer.getTagline());
+    }
+
+    private void showDetail4(Beer beer) {
+        txtDetail.setText(beer.getDescription());
+    }
+
 }
+
+
+
+
 
