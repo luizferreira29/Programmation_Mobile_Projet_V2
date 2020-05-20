@@ -16,7 +16,7 @@ public class Beer {
     private String name;
     private String tagline;
     private String description;
-    private String image_url;
+    public String image_url;
     private Float abv;
     private Float ph;
     private String brewers_tips;

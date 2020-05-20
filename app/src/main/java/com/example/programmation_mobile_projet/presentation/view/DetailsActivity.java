@@ -1,6 +1,7 @@
 package com.example.programmation_mobile_projet.presentation.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.GenericLifecycleObserver;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.programmation_mobile_projet.R;
 import com.example.programmation_mobile_projet.Singletons;
 import com.example.programmation_mobile_projet.presentation.controller.MainController;
@@ -22,7 +24,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private MainController controller;
     private TextView txtDetail;
-    //public ImageView imageView;
+    public ImageView imageView;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -51,8 +53,14 @@ public class DetailsActivity extends AppCompatActivity {
         txtDetail = findViewById(R.id.detail_txtId);
         showDetailId(beer);
 
-        //imageView = itemView.findViewById(R.id.detail_txtPh);
-        //showDetailPh(beer);
+        txtDetail = findViewById(R.id.detail_txtPh);
+        showDetailPh(beer);
+
+        imageView = findViewById(R.id.picture);
+        showPicture(beer);
+
+        imageView = findViewById(R.id.picture2);
+        showPicture(beer);
 
 
     }
@@ -89,6 +97,13 @@ public class DetailsActivity extends AppCompatActivity {
     private void showDetailPh(Beer beer) {
         String s = beer.getPh().toString();
         txtDetail.setText("Ph : " +s);
+    }
+
+    private void showPicture(Beer beer) {
+        String Url = beer.getImage_url();
+        Glide.with(this)
+                .load(Url)
+                .into(imageView);
     }
 
 }
