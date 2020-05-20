@@ -3,8 +3,10 @@ package com.example.programmation_mobile_projet.presentation.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.programmation_mobile_projet.R;
@@ -20,46 +22,76 @@ public class DetailsActivity extends AppCompatActivity {
 
     private MainController controller;
     private TextView txtDetail;
+    //public ImageView imageView;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        txtDetail = findViewById(R.id.detail_txt);
+        txtDetail = findViewById(R.id.detail_txtName);
         Intent intent = getIntent();
         String beerJson = intent.getStringExtra("beerKeyName"); //if it's a string you stored.
         Beer beer = Singletons.getGson().fromJson(beerJson, Beer.class);
         showDetail(beer);
 
-        //txtDetail = findViewById(R.id.detail_txt2);
-        //showDetail2(beer);
+        txtDetail = findViewById(R.id.detail_txtTagline);
+        showDetailTagline(beer);
 
-        txtDetail = findViewById(R.id.detail_txt3);
-        showDetail3(beer);
+        txtDetail = findViewById(R.id.detail_txtBrewersTips);
+        showDetailBrewersTips(beer);
 
-        txtDetail = findViewById(R.id.detail_txt4);
-        showDetail4(beer);
+        txtDetail = findViewById(R.id.detail_txtDescription);
+        showDetailDescription(beer);
+
+        txtDetail = findViewById(R.id.detail_txtAbv);
+        showDetailAbv(beer);
+
+        txtDetail = findViewById(R.id.detail_txtId);
+        showDetailId(beer);
+
+        //imageView = itemView.findViewById(R.id.detail_txtPh);
+        //showDetailPh(beer);
+
+
     }
 
     private void showDetail(Beer beer) {
         txtDetail.setText(beer.getName());
     }
 
-    /*private void showDetail2(Beer beer) {
-        txtDetail.setText(beer.getId());
-    }*/
-
-    private void showDetail3(Beer beer) {
-        txtDetail.setText("tagline :" +beer.getTagline());
+    @SuppressLint("SetTextI18n")
+    private void showDetailTagline(Beer beer) {
+        txtDetail.setText("Tagline : " +beer.getTagline());
     }
 
-    private void showDetail4(Beer beer) {
-        txtDetail.setText(beer.getDescription());
+    @SuppressLint("SetTextI18n")
+    private void showDetailDescription(Beer beer) {
+        txtDetail.setText("Description : " +beer.getDescription());
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showDetailBrewersTips(Beer beer) {
+        txtDetail.setText("Brewers tips : " +beer.getBrewers_tips());
+    }
+
+    private void showDetailAbv(Beer beer) {
+        String s = beer.getAbv().toString();
+        txtDetail.setText("Abv (in %): " +s);
+    }
+
+    private void showDetailId(Beer beer) {
+        String s = beer.getId().toString();
+        txtDetail.setText("Id : " +s);
+    }
+
+    private void showDetailPh(Beer beer) {
+        String s = beer.getPh().toString();
+        txtDetail.setText("Ph : " +s);
     }
 
 }
-
 
 
 
