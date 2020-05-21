@@ -1,6 +1,6 @@
 # Projet Programmation Mobile (Liste de bières)
 
-One Paragraph of project description goes here
+Premier projet sur Android Studio, application qui permet d'afficher une liste de bières et d'afficher plusieurs informations sur celle-ci afin de pouvoir découvrir de nouvelles bières et passer un bon moment avant une degustation. 
 
 ## Prérequis
 
@@ -27,12 +27,16 @@ https://github.com/luizferreira29/Programmation_Mobile_Projet_V2
 
 * Affichage du logo de l'application
 
+![Screenshot](4.PNG)
+
 ### Ecran d'accueil
 
 * Liste de 80 bières
 * Icone de bière devant chaque élément de la liste
 * Nom de chaque bière
 * Slogan de chaque bière
+
+![Screenshot](3.PNG)
 
 ### Ecran Affichage détails
 
@@ -45,56 +49,6 @@ https://github.com/luizferreira29/Programmation_Mobile_Projet_V2
 * Affichage de l'Id de la bière
 * Affichage du Ph de la bière
 
-
-Explain how to run the automated tests for this system
-
-##
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+![Screenshot](2.png)
+![Screenshot](1.png)
 
